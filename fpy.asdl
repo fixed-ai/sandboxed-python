@@ -1,0 +1,48 @@
+-- Finite Python ASDL grammar
+module FPy
+{
+    stmt = | Delete(lhs* targets)
+           | Assign(lhs* targets, expr value)
+           | Try(stmt* body, tryhandler handler, stmt* finally_body)
+           | If(expr test, stmt* body, stmt* orelse)
+           | Expr(expr value)
+           | Pass
+           attributes (int lineno, int col_offset, int? end_lineno, int? end_col_offset)
+
+    lhs = | Name(identifier id)
+          | Subscript(expr value, expr index)
+
+    expr = And(expr left, expr right)
+         | Or(expr left, expr right)
+         | BinOp(expr left, operator op, expr right)
+         | UnaryOp(unaryop op, expr operand)
+         | Compare(expr left, comparison* comparisons)
+         | Call(identifier func, expr* args)
+         | Constant(constant value)
+         | MethodCall(expr value, identifier method, expr* args)
+         | Subscript(expr value, expr index)
+         | Name(identifier id)
+         | Dict(expr?* keys, expr* values)
+         | List(expr_or_starred* elts)
+         | Set(expr_or_starred* elts)
+         | Tuple(expr_or_starred* elts)
+         | Slice(expr? lower, expr? upper, expr? step)
+          attributes (int lineno, int col_offset, int? end_lineno, int? end_col_offset)
+
+
+    expr_or_starred = | Expr(expr value)
+                      | Starred(expr value)
+
+    boolop = And | Or
+
+    operator = Add | Sub | Mult | Div | Mod | Pow | LShift
+                   | RShift | BitOr | BitXor | BitAnd | FloorDiv
+
+    unaryop = Invert | Not | UAdd | USub
+
+    cmpop = Eq | NotEq | Lt | LtE | Gt | GtE | Is | IsNot | In | NotIn  
+
+    comparison = (cmpop op, expr right)
+
+    tryhandler = (identifier? name, stmt* body)
+}
