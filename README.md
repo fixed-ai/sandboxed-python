@@ -6,7 +6,7 @@
 [![Codecov](https://codecov.io/gh/fixed-ai/sandboxed-python/graph/badge.svg?token=WPZRFD0MSR)](https://codecov.io/gh/fixed-ai/sandboxed-python)
 
 
-Sandboxed Python is a lightweight, secure interpreter for a restricted subset of Python (I call it "Finite Python" as it does not allow loops/recursions). It provides a **true, interop-friendly sandbox environment** that merely depends on the Python standard library and is distributed as a single file (you might include `src/sandboxed_python/finite_python.py` in your project). This makes it ideal for scenarios requiring controlled execution, such as LLM (Large Language Model) tool calls, serverless functions, or plugin systems.
+Sandboxed Python is a lightweight, secure interpreter for a restricted subset of Python (I call it "Finite Python" as it does not allow loops/recursions). It provides a **true, interop-friendly sandbox environment** that merely depends on the Python standard library and is distributed as a single file (you might include [src/sandboxed_python/finite_python.py](https://github.com/fixed-ai/sandboxed-python/blob/main/src/sandboxed_python/finite_python.py) in your project). This makes it ideal for scenarios requiring controlled execution, such as LLM (Large Language Model) tool calls, serverless functions, or plugin systems.
 
 ### Key Features
 - **Limited but Secure and Usable Python Subset**: Supports essential operations like assignments, conditionals, try-except, basic data structures (lists, dicts, sets, tuples), and safe built-ins/methods. Loops are explicitly forbidden in code (e.g., no `for` or `while`), but list/tuple creation allows implicit repetition via multiplication (e.g., `[0] * 5`).
@@ -193,7 +193,7 @@ FPy is the restricted Python subset interpreted by Sandboxed Python. It supports
 - Statements: Assignments (`lhs1 = lhs2 = ...`, `e1[e2] = e3`), if-else, try-except-finally (single handler), delete, pass.
 - No loops, functions, classes, imports, or comprehensions for security and finiteness.
 
-For the full abstract syntax tree (AST) structure, see [fpy.asdl](fpy.asdl).
+For the full abstract syntax tree (AST) structure, see [fpy.asdl](https://github.com/fixed-ai/sandboxed-python/blob/main/fpy.asdl).
 
 ## Alternatives
 
