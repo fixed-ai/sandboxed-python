@@ -634,6 +634,18 @@ class TestHighLevel(unittest.TestCase):
                     with self.assertRaises(FPyException):
                         execute_fpy(source)
 
+    def test_catch_recursionerror(self):
+        source = "-" * 1000 + "1"
+        execute_fpy(source)
+
+    def test_catch_memoryerror(self):
+        source = "-" * 10000 + "1"
+        execute_fpy(source)
+
+    def test_catch_unicodeencodeerror(self):
+        source = "'\udbff\udfff'"
+        execute_fpy(source)
+
 
 if __name__ == "__main__":
     unittest.main()

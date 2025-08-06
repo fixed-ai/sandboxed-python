@@ -586,7 +586,11 @@ class PySandbox(abc.ABC):
 
 def parse_fpy(source: str, filename: str | None = None) -> list[Stmt]:
     parser = _FPyParser(source, filename)
-    return parser._parse()
+    try:
+        result = parser._parse()
+    except (UnicodeEncodeError, MemoryError, RecursionError):
+        result = []
+    return result
 
 
 class _FPyParser:
